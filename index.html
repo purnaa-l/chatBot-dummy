@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chatbot - Sustainable Practices</title>
+    <link href="https://fonts.googleapis.com/css2?family=Lobster&family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="index.css">
+</head>
+<body>
+
+    <!-- Chatbot Icon -->
+    <div id="chatbot-icon" class="chatbot-icon">
+        <i class="fa fa-comment" aria-hidden="true"></i>
+    </div>
+
+    <!-- Chatbot Pop-up Window -->
+    <div id="chatbot-popup" class="chat-popup">
+        <div class="chat-container">
+            <h2>Chatbot on Sustainability</h2>
+            <div id="chatbox" class="chat-box"></div>
+            <div>
+                <input type="text" id="user-input" placeholder="Ask a question..." />
+                <button id="send-button">Send</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Get references to DOM elements
+        const sendButton = document.getElementById('send-button');
+        const userInput = document.getElementById('user-input');
+        const chatBox = document.getElementById('chatbox');
+        const chatbotIcon = document.getElementById('chatbot-icon');
+        const chatbotPopup = document.getElementById('chatbot-popup');
+
+        // Function to send a message to the backend and display the response
+        function sendMessage() {
+            const message = userInput.value.trim();
+            if (message === '') return;
+
+            // Display user message in the chatbox
+            chatBox.innerHTML += `<div class="message user">${message}</div>`;
+            userInput.value = ''; // Clear input field
+            chatBox.scrollTop = chatBox.scrollHeight; // Scroll to the bottom
+
+            // Send the message to the backend
+            fetch('http://localhost:5001', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ message: message })
+            })
+            .then(response => response.json())
+            .then(data => {
+                // Display bot response in the chatbox
+                chatBox.innerHTML += `<div class="message bot">${data.response}</div>`;
+                chatBox.scrollTop = chatBox.scrollHeight; // Scroll to the bottom
+            })
+            .catch(error => {
+                console.error('Error:', error);
+            });
+        }
+
+        // Add event listener for send button
+        sendButton.addEventListener('click', sendMessage);
+
+        // Allow pressing Enter to send message
+        userInput.addEventListener('keypress', function(event) {
+            if (event.key === 'Enter') {
+                sendMessage();
+            }
+        });
+
+        // Toggle the chatbot pop-up window visibility
+        chatbotIcon.addEventListener('click', function() {
+            chatbotPopup.classList.toggle('active');
+        });
+    </script>
+
+</body>
+</html>

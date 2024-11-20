@@ -1,0 +1,134 @@
+/* General body styling */
+body {
+    font-family: 'Poppins', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f9f9f9;
+    color: #333;
+}
+
+/* Chatbot icon styling */
+.chatbot-icon {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background-color: #4CAF50;
+    color: white;
+    padding: 15px;
+    border-radius: 50%;
+    cursor: pointer;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    font-size: 24px;
+    z-index: 1000;
+    transition: background-color 0.3s;
+}
+
+.chatbot-icon:hover {
+    background-color: #45a049;
+}
+
+/* Chatbot popup window */
+.chat-popup {
+    position: fixed;
+    bottom: 70px;
+    right: 20px;
+    width: 400px;
+    background-color: #fff;
+    border-radius: 12px;
+    padding: 20px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+    display: none; /* Initially hidden */
+    z-index: 9999;
+    transition: all 0.3s ease;
+}
+
+/* Active state for the popup (when it is displayed) */
+.chat-popup.active {
+    display: block;
+}
+
+/* Chat container for the chatbot content */
+.chat-container {
+    display: flex;
+    flex-direction: column;
+    height: 350px;
+}
+
+/* Header for chatbot */
+.chat-container h2 {
+    font-family: 'Lobster', cursive;
+    color: #4CAF50;
+    text-align: center;
+    margin-bottom: 20px;
+    font-size: 20px;
+}
+
+/* Chatbox for messages */
+.chat-box {
+    flex: 1;
+    overflow-y: auto;
+    max-height: 250px;
+    margin-bottom: 15px;
+    border-bottom: 2px solid #ddd;
+    padding: 10px;
+    background-color: #fafafa;
+    border-radius: 8px;
+    font-size: 14px;
+}
+
+/* Message styling */
+.chat-box .message {
+    margin: 10px 0;
+    padding: 12px;
+    border-radius: 8px;
+    max-width: 80%;
+    word-wrap: break-word;
+    font-size: 14px;
+}
+
+/* User message styling */
+.chat-box .user {
+    background-color: #b2d4ff;
+    align-self: flex-start;
+    border-top-left-radius: 0;
+}
+
+/* Bot message styling */
+.chat-box .bot {
+    background-color: #d8e4d8;
+    align-self: flex-end;
+    border-top-right-radius: 0;
+}
+
+/* Input field styling */
+#user-input {
+    padding: 12px;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    width: calc(100% - 90px);
+    font-size: 14px;
+    margin-bottom: 15px;
+    outline: none;
+}
+
+/* Focus effect on input */
+#user-input:focus {
+    border-color: #4CAF50;
+}
+
+/* Send button styling */
+#send-button {
+    padding: 12px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 14px;
+    width: 70px;
+}
+
+/* Send button hover effect */
+#send-button:hover {
+    background-color: #45a049;
+}
